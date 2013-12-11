@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -31,13 +30,8 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	/**
-	 * button2 的onclick事件注册是在layout文件中通过设置onClick属性来完成。
-	 * 
-	 * @param view
-	 */
-	public void buttonTwoOnClick(View view) {
-		Toast.makeText(this, R.string.toast_text_1, Toast.LENGTH_LONG).show();
+	public void showLayouts(View view) {
+		startActivity(new Intent(this, LayoutsActivity.class));
 	}
 
 }

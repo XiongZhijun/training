@@ -32,6 +32,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".LayoutsActivity" >
+        </activity>
+        <activity android:name=".HorizontalLinearLayoutActivity" >
+        </activity>
+        <activity android:name=".TableLayoutActivity" >
+        </activity>
+        <activity android:name=".FrameLayoutActivity" >
+        </activity>
     </application>
 
 </manifest>
