@@ -26,6 +26,11 @@
         <activity
             android:name="org.herod.training.android.SecondActivity"
             android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="org.herod.training.android.second" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

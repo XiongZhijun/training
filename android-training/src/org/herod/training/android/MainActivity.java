@@ -17,8 +17,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				startActivity(new Intent(MainActivity.this,
-						SecondActivity.class));
+				startActivity(new Intent("org.herod.training.android.second"));
 			}
 		});
 	}
