@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		// 第一种将View设置到Activity中的方法
 		setContentView(R.layout.activity_main);
+		setTitle(getString(R.string.activity_title_1));
 		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				startActivity(new Intent("org.herod.training.android.second"));
@@ -36,7 +37,7 @@ public class MainActivity extends Activity {
 	 * @param view
 	 */
 	public void buttonTwoOnClick(View view) {
-		Toast.makeText(this, "Button 2 On Click", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, R.string.toast_text_1, Toast.LENGTH_LONG).show();
 	}
 
 }

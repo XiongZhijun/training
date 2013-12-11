@@ -11,30 +11,30 @@
 
     <Button
         android:onClick="showWeb"
-        android:text="显示网页" />
+        android:text="@string/label_show_web" />
 
     <Button
         android:onClick="showMap"
-        android:text="显示地图" />
+        android:text="@string/label_show_map" />
 
     <Button
         android:onClick="showDailingApp"
-        android:text="显示拨号程序" />
+        android:text="@string/label_show_dailing_app" />
 
     <Button
         android:onClick="dailing"
-        android:text="直接拨打电话" />
+        android:text="@string/label_dailing" />
 
     <Button
         android:onClick="showSmsApp"
-        android:text="调用短信程序 " />
+        android:text="@string/label_show_sms_app" />
 
     <Button
         android:onClick="sendSms"
-        android:text="发送消息 " />
+        android:text="@string/label_send_sms" />
 
     <Button
         android:onClick="sendEmail"
-        android:text="传送 Email" />
+        android:text="@string/label_send_email" />
 
 </GridLayout>
