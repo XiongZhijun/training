@@ -9,8 +9,28 @@
     tools:context=".MainActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="10dip"
+        android:text="Button 1" />
+    <!-- Button2通过设置onClick属性的方式来注册onClick事件 -->
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="10dip"
+        android:onClick="buttonTwoOnClick"
+        android:text="Button 2" />
 
 </RelativeLayout>
