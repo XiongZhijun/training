@@ -34,4 +34,8 @@ public class MainActivity extends Activity {
 		startActivity(new Intent(this, LayoutsActivity.class));
 	}
 
+	public void showServiceActivity(View view) {
+		startActivity(new Intent(this, ServiceActivity.class));
+	}
+
 }

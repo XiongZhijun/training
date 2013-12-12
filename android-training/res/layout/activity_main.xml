@@ -16,11 +16,19 @@
         android:text="Intent演示用例" />
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button1"
         android:layout_marginTop="10dip"
         android:onClick="showLayouts"
         android:text="布局演示" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="10dip"
+        android:onClick="showServiceActivity"
+        android:text="Service演示" />
 
 </RelativeLayout>
