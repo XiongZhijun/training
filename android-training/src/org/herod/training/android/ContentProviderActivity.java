@@ -1,9 +1,12 @@
 package org.herod.training.android;
 
 import android.app.Activity;
+import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 public class ContentProviderActivity extends Activity {
 
@@ -11,6 +14,16 @@ public class ContentProviderActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.content_provider);
+		Handler handler = new Handler();
+		ContentObserver observer = new ContentObserver(handler) {
+			@Override
+			public void onChange(boolean selfChange) {
+				super.onChange(selfChange);
+				Toast.makeText(getApplicationContext(),
+						"ContentProvider Changed!", Toast.LENGTH_LONG).show();
+			}
+		};
+		getContentResolver().registerContentObserver(getUri(), true, observer);
 	}
 
 	public void query(View v) {
