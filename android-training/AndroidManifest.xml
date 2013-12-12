@@ -42,12 +42,20 @@
         </activity>
         <activity android:name=".ServiceActivity" >
         </activity>
+        <activity android:name=".ContentProviderActivity" >
+        </activity>
 
         <service android:name=".BaseService" >
         </service>
 
         <receiver android:name=".SimpleReceiver" >
         </receiver>
+
+        <provider
+            android:name=".SimpleContentProvider"
+            android:authorities="org.herod.study.android"
+            android:exported="false" >
+        </provider>
     </application>
 
 </manifest>

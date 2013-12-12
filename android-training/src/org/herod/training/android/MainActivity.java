@@ -73,4 +73,8 @@ public class MainActivity extends Activity {
 		sendBroadcast(new Intent("new.receiver"));
 	}
 
+	public void testContentProvider(View v) {
+		startActivity(new Intent(this, ContentProviderActivity.class));
+	}
+
 }
