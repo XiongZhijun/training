@@ -76,5 +76,9 @@ public class MainActivity extends Activity {
 	public void testContentProvider(View v) {
 		startActivity(new Intent(this, ContentProviderActivity.class));
 	}
+	public void testAsyncTask(View v) {
+		new SimpleAsyncTask(this).execute(2000L);
+	}
+	
 
 }
