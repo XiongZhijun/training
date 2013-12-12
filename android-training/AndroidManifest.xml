@@ -45,6 +45,9 @@
 
         <service android:name=".BaseService" >
         </service>
+
+        <receiver android:name=".SimpleReceiver" >
+        </receiver>
     </application>
 
 </manifest>
