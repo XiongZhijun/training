@@ -2,8 +2,32 @@
 
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="设置">
+        <menu>
+            <item
+                android:id="@+id/system_settings"
+                android:title="系统设置"/>
+            <item
+                android:id="@+id/basic_settings"
+                android:title="基本设置"/>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/help"
+        android:orderInCategory="4"
+        android:showAsAction="never"
+        android:title="帮助"/>
+    <item
+        android:id="@+id/regist"
+        android:orderInCategory="2"
+        android:showAsAction="never"
+        android:title="注册"/>
+    <item
+        android:id="@+id/login"
+        android:orderInCategory="1"
+        android:showAsAction="never"
+        android:title="登录"/>
 
 </menu>

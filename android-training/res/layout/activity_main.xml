@@ -67,5 +67,12 @@
         android:layout_marginTop="10dip"
         android:onClick="testAsyncTask"
         android:text="AsyncTask演示" />
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button7"
+        android:layout_marginTop="10dip"
+        android:text="Context Task演示（长按）" />
 
 </RelativeLayout>
