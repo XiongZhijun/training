@@ -1,0 +1,4 @@
+<dataset>
+	<User id="1" name="admin" password="123456" role="administrator" />
+	<User id="2" name="zhangsan" password="111" role="leader" />
+</dataset>
