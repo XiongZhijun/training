@@ -29,7 +29,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 /**
@@ -48,9 +47,6 @@ public abstract class AbstractDataSourceTests extends
 	protected DataSource dataSource;
 
 	@Autowired
-	protected SimpleJdbcTemplate simpleJdbcTemplate;
-
-	@Autowired
 	protected JdbcTemplate jdbcTemplate;
 
 	@Autowired
@@ -66,7 +62,7 @@ public abstract class AbstractDataSourceTests extends
 	 * @return
 	 */
 	protected int executeSql(String sql, Object... params) {
-		return simpleJdbcTemplate.update(sql, params);
+		return jdbcTemplate.update(sql, params);
 	}
 
 	/**
@@ -76,7 +72,7 @@ public abstract class AbstractDataSourceTests extends
 	 *            待删除的表。
 	 */
 	protected void removeTable(String tableName) {
-		simpleJdbcTemplate.update("drop table " + tableName);
+		jdbcTemplate.update("drop table " + tableName);
 	}
 
 	/**

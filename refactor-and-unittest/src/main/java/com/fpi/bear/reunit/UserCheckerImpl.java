@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import org.springframework.util.StringUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserCheckerImpl implements UserChecker {
 
 	@Autowired
-	private SimpleJdbcTemplate simpleJdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	/*
 	 * (non-Javadoc)
@@ -34,7 +33,7 @@ public class UserCheckerImpl implements UserChecker {
 	}
 
 	private String getRoleByUser(String name, String password) {
-		List<Map<String, Object>> users = simpleJdbcTemplate.queryForList(
+		List<Map<String, Object>> users = jdbcTemplate.queryForList(
 				"select * from User where name = ? and password = ?", name,
 				password);
 		if (users == null || users.size() == 0) {
@@ -45,11 +44,12 @@ public class UserCheckerImpl implements UserChecker {
 		return role;
 	}
 
-	public SimpleJdbcTemplate getSimpleJdbcTemplate() {
-		return simpleJdbcTemplate;
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
 	}
 
-	public void setSimpleJdbcTemplate(SimpleJdbcTemplate simpleJdbcTemplate) {
-		this.simpleJdbcTemplate = simpleJdbcTemplate;
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
+
 }
