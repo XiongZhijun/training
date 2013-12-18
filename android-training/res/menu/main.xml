@@ -1,33 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="3"
-        android:showAsAction="never"
-        android:title="设置">
-        <menu>
-            <item
-                android:id="@+id/system_settings"
-                android:title="系统设置"/>
-            <item
-                android:id="@+id/basic_settings"
-                android:title="基本设置"/>
-        </menu>
-    </item>
-    <item
-        android:id="@+id/help"
+        android:id="@+id/addShop"
         android:orderInCategory="4"
         android:showAsAction="never"
-        android:title="帮助"/>
+        android:title="添加店铺"/>
     <item
-        android:id="@+id/regist"
-        android:orderInCategory="2"
+        android:id="@+id/removeAllShop"
+        android:orderInCategory="4"
         android:showAsAction="never"
-        android:title="注册"/>
-    <item
-        android:id="@+id/login"
-        android:orderInCategory="1"
-        android:showAsAction="never"
-        android:title="登录"/>
+        android:title="删除所有店铺"/>
 
 </menu>

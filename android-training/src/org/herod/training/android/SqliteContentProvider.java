@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -65,21 +66,60 @@ public class SqliteContentProvider extends ContentProvider {
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		// TODO Auto-generated method stub
+		if (URI_MATCHER.match(uri) != COLLECTION) {
+			throw new IllegalArgumentException("Unknown URI " + uri);
+		}
+		SQLiteDatabase db = openHelper.getWritableDatabase();
+		long rowID = db.insert(getTableName(uri), null, values);
+		if (rowID > 0) {
+			Uri retUri = ContentUris.withAppendedId(uri, rowID);
+			getContext().getContentResolver().notifyChange(uri, null);
+			return retUri;
+		}
+
 		return null;
 	}
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		// TODO Auto-generated method stub
-		return 0;
+		SQLiteDatabase db = openHelper.getWritableDatabase();
+		int count = -1;
+		switch (URI_MATCHER.match(uri)) {
+		case COLLECTION:
+			count = db.delete(getTableName(uri), selection, selectionArgs);
+			break;
+		case SINGLE:
+			String rowID = uri.getPathSegments().get(1);
+			count = db.delete(getTableName(uri),  "_id =" + rowID,
+					null);
+			break;
+		default:
+			throw new IllegalArgumentException("Unknow URI :" + uri);
+		}
+		this.getContext().getContentResolver().notifyChange(uri, null);
+		return count;
 	}
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		// TODO Auto-generated method stub
-		return 0;
+		SQLiteDatabase db = openHelper.getWritableDatabase();
+		int count = -1;
+		switch (URI_MATCHER.match(uri)) {
+		case COLLECTION:
+			count = db.update(getTableName(uri), values, null, null);
+			break;
+		case SINGLE:
+			String rowID = uri.getPathSegments().get(1);
+			count = db.update(getTableName(uri), values, "_id ="
+					+ rowID, null);
+			break;
+		default:
+			throw new IllegalArgumentException("Unknow URI : " + uri);
+		}
+		this.getContext().getContentResolver().notifyChange(uri, null);
+		return count;
+
 	}
 
 }
