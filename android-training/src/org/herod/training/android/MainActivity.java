@@ -1,8 +1,11 @@
 package org.herod.training.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -13,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -41,6 +45,7 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		gridView.setOnItemLongClickListener(new OnShopLongClickListener());
 	}
 
 	@Override
@@ -80,6 +85,33 @@ public class MainActivity extends Activity {
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	class OnShopLongClickListener implements OnItemLongClickListener {
+		public boolean onItemLongClick(AdapterView<?> parent, View view,
+				int position, long id) {
+			Cursor shop = (Cursor) parent.getItemAtPosition(position);
+			long shopId = shop.getLong(shop.getColumnIndex("_id"));
+			final Uri url = Uri
+					.parse("content://org.herod.study.android/shops/" + shopId);
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					MainActivity.this);
+			builder.setTitle("提示").setMessage("确定删除店铺？")
+					.setNegativeButton("取消", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					}).setPositiveButton("确定", new OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							getContentResolver().delete(url, null, null);
+							showShops();
+							dialog.dismiss();
+						}
+					});
+			AlertDialog dialog = builder.create();
+			dialog.show();
+			return true;
+		}
 	}
 
 	class ShopLoadTask extends AsyncTask<Void, Void, Cursor> {
