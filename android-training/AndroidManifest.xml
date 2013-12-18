@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
 		<activity android:name=".AddShopActivity"></activity>
+		<activity android:name=".GoodsActivity"></activity>
         <provider
             android:name=".SqliteContentProvider"
             android:authorities="org.herod.study.android"

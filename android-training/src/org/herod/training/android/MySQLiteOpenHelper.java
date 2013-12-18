@@ -24,7 +24,19 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+		if (oldVersion == 1 && newVersion == 2) {
+			db.execSQL("CREATE TABLE GOODSES (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ "name TEXT, image TEXT, price REAL, unit TEXT, shopId INTEGER)");
+			for (int i = 0; i < 1000; i++) {
+				ContentValues values = new ContentValues();
+				values.put("name", "小吃——" + i);
+				values.put("image", R.drawable.xlb);
+				values.put("price", 8.0d);
+				values.put("unit", "笼");
+				values.put("shopId", i % 100);
+				db.insert("GOODSES", null, values);
+			}
+		}
 	}
 
 }

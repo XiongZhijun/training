@@ -22,12 +22,15 @@ public class SqliteContentProvider extends ContentProvider {
 	static {
 		URI_MATCHER.addURI("org.herod.study.android", "shops", COLLECTION);
 		URI_MATCHER.addURI("org.herod.study.android", "shops/#", SINGLE);
+		URI_MATCHER.addURI("org.herod.study.android", "goodses", COLLECTION);
+		URI_MATCHER.addURI("org.herod.study.android", "goodses/#", SINGLE);
 		TABLE_NAME_MAP.put("shops", "SHOPS");
+		TABLE_NAME_MAP.put("goodses", "GOODSES");
 	}
 
 	@Override
 	public boolean onCreate() {
-		openHelper = new MySQLiteOpenHelper(getContext(), 1);
+		openHelper = new MySQLiteOpenHelper(getContext(), 2);
 		return true;
 	}
 
@@ -90,8 +93,7 @@ public class SqliteContentProvider extends ContentProvider {
 			break;
 		case SINGLE:
 			String rowID = uri.getPathSegments().get(1);
-			count = db.delete(getTableName(uri),  "_id =" + rowID,
-					null);
+			count = db.delete(getTableName(uri), "_id =" + rowID, null);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknow URI :" + uri);
@@ -111,8 +113,7 @@ public class SqliteContentProvider extends ContentProvider {
 			break;
 		case SINGLE:
 			String rowID = uri.getPathSegments().get(1);
-			count = db.update(getTableName(uri), values, "_id ="
-					+ rowID, null);
+			count = db.update(getTableName(uri), values, "_id =" + rowID, null);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknow URI : " + uri);

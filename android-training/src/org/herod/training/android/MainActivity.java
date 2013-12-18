@@ -10,6 +10,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -25,6 +28,19 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		setTitle("所有店铺");
 		gridView = (GridView) findViewById(R.id.gridView);
+		gridView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(MainActivity.this,
+						GoodsActivity.class);
+				Cursor item = (Cursor) parent.getItemAtPosition(position);
+				intent.putExtra("shopId",
+						item.getLong(item.getColumnIndex("_id")));
+				intent.putExtra("shopName",
+						item.getString(item.getColumnIndex("name")));
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
