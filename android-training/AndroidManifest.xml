@@ -25,35 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.herod.training.android.IntentDemoActivity" >
-            <intent-filter>
-                <action android:name="org.herod.training.android.second" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".LayoutsActivity" >
-        </activity>
-        <activity android:name=".HorizontalLinearLayoutActivity" >
-        </activity>
-        <activity android:name=".TableLayoutActivity" >
-        </activity>
-        <activity android:name=".FrameLayoutActivity" >
-        </activity>
-        <activity android:name=".ServiceActivity" >
-        </activity>
-        <activity android:name=".ContentProviderActivity" >
-        </activity>
-
-        <service android:name=".BaseService" >
-        </service>
-
-        <receiver android:name=".SimpleReceiver" >
-        </receiver>
 
         <provider
-            android:name=".SimpleContentProvider"
-            android:authorities="org.herod.study.android"
+            android:name=".ShopContentProvider"
+            android:authorities="org.herod.study.android.shops"
             android:exported="false" >
         </provider>
     </application>
