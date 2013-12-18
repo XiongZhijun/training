@@ -27,8 +27,8 @@
         </activity>
 
         <provider
-            android:name=".ShopContentProvider"
-            android:authorities="org.herod.study.android.shops"
+            android:name=".SqliteContentProvider"
+            android:authorities="org.herod.study.android"
             android:exported="false" >
         </provider>
     </application>

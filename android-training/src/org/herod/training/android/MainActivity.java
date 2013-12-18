@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 				throw new RuntimeException(e.getMessage(), e);
 			}
 			return context.getContentResolver().query(
-					Uri.parse("content://org.herod.study.android.shops"), null,
+					Uri.parse("content://org.herod.study.android/shops"), null,
 					null, null, null);
 		}
 
