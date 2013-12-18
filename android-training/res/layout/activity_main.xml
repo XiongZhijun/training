@@ -8,71 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:text="Intent演示用例" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="10dip"
-        android:onClick="showLayouts"
-        android:text="布局演示" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="10dip"
-        android:onClick="showServiceActivity"
-        android:text="Service演示" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_marginTop="10dip"
-        android:onClick="sendInfoToReceiver"
-        android:text="发送通知到公共Receiver" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
-        android:layout_marginTop="10dip"
-        android:onClick="sendInfoToInnerReceiver"
-        android:text="发送通知到内部Receiver" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button5"
-        android:layout_marginTop="10dip"
-        android:onClick="testContentProvider"
-        android:text="ContentProvider演示" />
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button6"
-        android:layout_marginTop="10dip"
-        android:onClick="testAsyncTask"
-        android:text="AsyncTask演示" />
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button7"
-        android:layout_marginTop="10dip"
-        android:text="Context Task演示（长按）" />
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:horizontalSpacing="5dip"
+        android:numColumns="2"
+        android:verticalSpacing="5dip" >
+    </GridView>
 
 </RelativeLayout>
