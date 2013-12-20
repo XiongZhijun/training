@@ -2,7 +2,9 @@ package org.herod.training.android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -51,10 +54,10 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		showShops();
+		loadShops();
 	}
 
-	private void showShops() {
+	private void loadShops() {
 		shopLoadTask = new ShopLoadTask(this);
 		shopLoadTask.execute();
 	}
@@ -74,17 +77,39 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.addShop:
-			startActivity(new Intent(this, AddShopActivity.class));
+			addShop();
 			return true;
 		case R.id.removeAllShop:
-			getContentResolver().delete(
-					Uri.parse("content://org.herod.study.android/shops"), null,
-					null);
-			showShops();
+			getContentResolver().delete(getShopUri(), null, null);
+			loadShops();
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void addShop() {
+		final EditText view = new EditText(this);
+		Builder builder = new AlertDialog.Builder(this).setTitle("新增店铺")
+				.setView(view)
+				.setNegativeButton("取消", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				}).setPositiveButton("新增", new OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						ContentValues values = new ContentValues();
+						values.put("name", view.getText().toString());
+						values.put("image", R.drawable.kfc);
+						getContentResolver().insert(getShopUri(), values);
+						dialog.dismiss();
+					}
+				});
+		builder.create().show();
+	}
+
+	private Uri getShopUri() {
+		return Uri.parse("content://org.herod.study.android/shops");
 	}
 
 	class OnShopLongClickListener implements OnItemLongClickListener {
@@ -104,7 +129,7 @@ public class MainActivity extends Activity {
 					}).setPositiveButton("确定", new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							getContentResolver().delete(url, null, null);
-							showShops();
+							loadShops();
 							dialog.dismiss();
 						}
 					});
@@ -143,9 +168,8 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected Cursor doInBackground(Void... params) {
-			return context.getContentResolver().query(
-					Uri.parse("content://org.herod.study.android/shops"), null,
-					null, null, null);
+			return context.getContentResolver().query(getShopUri(), null, null,
+					null, null);
 		}
 
 	}
