@@ -9,10 +9,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +56,13 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+		ContentObserver observer = new ContentObserver(new Handler()) {
+			public void onChange(boolean selfChange) {
+				loadShops();
+			}
+		};
+		getContentResolver().registerContentObserver(getShopUri(), true,
+				observer);
 		loadShops();
 	}
 
@@ -81,7 +90,6 @@ public class MainActivity extends Activity {
 			return true;
 		case R.id.removeAllShop:
 			getContentResolver().delete(getShopUri(), null, null);
-			loadShops();
 		default:
 			break;
 		}
@@ -91,8 +99,7 @@ public class MainActivity extends Activity {
 	private void addShop() {
 		final EditText view = new EditText(this);
 		Builder builder = new AlertDialog.Builder(this).setTitle("新增店铺")
-				.setView(view)
-				.setNegativeButton("取消", new OnClickListener() {
+				.setView(view).setNegativeButton("取消", new OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 					}
@@ -129,7 +136,6 @@ public class MainActivity extends Activity {
 					}).setPositiveButton("确定", new OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							getContentResolver().delete(url, null, null);
-							loadShops();
 							dialog.dismiss();
 						}
 					});
